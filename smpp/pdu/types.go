@@ -4,7 +4,7 @@
 
 package pdu
 
-import "github.com/fiorix/go-smpp/smpp/pdu/pdufield"
+import "github.com/mementor/go-smpp/smpp/pdu/pdufield"
 
 // PDU Types.
 const (
@@ -219,6 +219,13 @@ func NewSubmitSMResp() Body {
 	return b
 }
 
+// NewSubmitSMRespSeq creates and initializes a new SubmitSMResp PDU for a specific seq.
+func NewSubmitSMRespSeq(seq uint32) Body {
+	b := newSubmitSMResp(&Header{ID: SubmitSMRespID, Seq: seq})
+	b.init()
+	return b
+}
+
 // SubmitMulti PDU.
 type SubmitMulti struct{ *codec }
 
@@ -299,8 +306,8 @@ func newDeliverSM(hdr *Header) *codec {
 			pdufield.DataCoding,
 			pdufield.SMDefaultMsgID,
 			pdufield.SMLength,
-			pdufield.UDHLength,
-			pdufield.GSMUserData,
+			// pdufield.UDHLength,
+			// pdufield.GSMUserData,
 			pdufield.ShortMessage,
 		},
 	}
@@ -310,6 +317,14 @@ func newDeliverSM(hdr *Header) *codec {
 func NewDeliverSM() Body {
 	b := newDeliverSM(&Header{ID: DeliverSMID})
 	b.init()
+	return b
+}
+
+// NewDeliverSMTLV creates and initializes a new DeliverSM PDU.
+func NewDeliverSMTLV(tlv pdufield.TLVMap) Body {
+	b := newDeliverSM(&Header{ID: DeliverSMID})
+	b.init()
+	b.t = tlv
 	return b
 }
 

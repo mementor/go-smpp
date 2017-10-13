@@ -12,10 +12,10 @@ import (
 
 	"golang.org/x/time/rate"
 
-	"github.com/fiorix/go-smpp/smpp"
-	"github.com/fiorix/go-smpp/smpp/pdu"
-	"github.com/fiorix/go-smpp/smpp/pdu/pdufield"
-	"github.com/fiorix/go-smpp/smpp/pdu/pdutext"
+	"github.com/mementor/go-smpp/smpp"
+	"github.com/mementor/go-smpp/smpp/pdu"
+	"github.com/mementor/go-smpp/smpp/pdu/pdufield"
+	"github.com/mementor/go-smpp/smpp/pdu/pdutext"
 )
 
 func ExampleReceiver() {

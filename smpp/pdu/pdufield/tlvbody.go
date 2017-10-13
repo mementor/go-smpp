@@ -71,6 +71,15 @@ func (tlv *TLVBody) Bytes() []byte {
 	return tlv.data
 }
 
+// MakeTLV makes TLV by in params
+func MakeTLV(tag TLVType, len uint16, data []byte) *TLVBody {
+	return &TLVBody{
+		Tag:  tag,
+		Len:  len,
+		data: data,
+	}
+}
+
 // SerializeTo serializes TLV data to its binary form.
 func (tlv *TLVBody) SerializeTo(w io.Writer) error {
 	b := make([]byte, 4+len(tlv.data))

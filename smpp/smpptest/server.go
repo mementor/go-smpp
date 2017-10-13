@@ -13,8 +13,8 @@ import (
 	"net"
 	"sync"
 
-	"github.com/fiorix/go-smpp/smpp/pdu"
-	"github.com/fiorix/go-smpp/smpp/pdu/pdufield"
+	"github.com/mementor/go-smpp/smpp/pdu"
+	"github.com/mementor/go-smpp/smpp/pdu/pdufield"
 )
 
 // Default settings.
@@ -37,9 +37,9 @@ type Server struct {
 	TLS     *tls.Config
 	Handler HandlerFunc
 
-	conns   []Conn
-	mu sync.Mutex
-	l  net.Listener
+	conns []Conn
+	mu    sync.Mutex
+	l     net.Listener
 }
 
 // NewServer creates and initializes a new Server. Callers are supposed
