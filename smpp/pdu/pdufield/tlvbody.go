@@ -80,6 +80,11 @@ func MakeTLV(tag TLVType, len uint16, data []byte) *TLVBody {
 	}
 }
 
+// Length return Length of tlv
+func (tlv *TLVBody) Length() int {
+	return int(tlv.Len) + 4
+}
+
 // SerializeTo serializes TLV data to its binary form.
 func (tlv *TLVBody) SerializeTo(w io.Writer) error {
 	b := make([]byte, 4+len(tlv.data))

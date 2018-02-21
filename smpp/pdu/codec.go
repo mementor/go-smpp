@@ -54,7 +54,7 @@ func (pdu *codec) Len() int {
 		l += f.Len()
 	}
 	for _, t := range pdu.t {
-		l += int(t.Len)
+		l += t.Length()
 	}
 	return l
 }
@@ -83,6 +83,11 @@ func (pdu *codec) SerializeTo(w io.Writer) error {
 			pdu.f.Set(k, nil)
 			f = pdu.f[k]
 		}
+		if err := f.SerializeTo(&b); err != nil {
+			return err
+		}
+	}
+	for _, f := range pdu.TLVFields() {
 		if err := f.SerializeTo(&b); err != nil {
 			return err
 		}
